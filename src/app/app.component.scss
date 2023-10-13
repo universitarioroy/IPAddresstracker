@@ -1,0 +1,130 @@
+
+.detail{
+  background:url('../assets/images/pattern-bg-mobile.png') no-repeat center;
+  background-size: cover;
+  padding: 20px 10%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 8%;
+}
+
+.detail__title{
+  // text-align: center;
+  font-size: 2rem;
+}
+
+.detail__inputs{
+  width: 100%;
+  display: flex;
+}
+
+.detail__inputs input{
+  width: 80%;
+  height: 46px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border: none;
+  outline: none;
+  padding-left: 20px;
+  font-size: 1.6rem;
+}
+
+.detail__inputs input::placeholder{
+  color: var(--color-DarkGray);
+}
+
+.detail__inputs button{
+  width: 20%;
+  height: 46px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border: none;
+  background-color: var(--color-black);
+  transition: all 0.5s ease;
+  // color: var(--color-white);
+  background-image:url('../assets/images/icon-arrow.svg') ;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20%;
+}
+
+
+
+.detail__inputs button:hover{
+  cursor: pointer;
+}
+
+.detail__description{
+  width: 80%;
+  min-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: calc( ( 100% - 80%)/2 );
+  background-color: var(--color-white);
+  border-radius: 10px;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail__description--item:nth-child(n+2){
+  margin-top: 10px;
+}
+
+.detail-description-item__title{
+  color: var(--color-DarkGray);
+  font-size: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.detail-description-item__texto{
+  color: var(--color-black);
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+
+.mapa{
+  background:url('../assets/images/mapas.jpg') no-repeat center;
+  background-size: cover;
+}
+
+@media only screen and (min-width:768px){
+  .detail__description{
+    flex-direction: row;
+    min-height: 50%;
+    top:75%;
+  }
+
+  .detail__description--item{
+    flex-grow: 1;
+    height: 60px;
+  }
+
+  .detail__description--item:nth-child(1){
+    padding-right: 5%;
+  }
+
+  .detail__description--item:nth-child(n+2){
+    margin-top: 0px;
+    border-left: 1px solid var(--color-DarkGray);
+    padding-left: 5%;
+  }
+
+  .detail-description-item__title{
+    text-align: start;
+  }
+
+  .detail__inputs input{
+    width: 90%;
+  }
+  .detail__inputs button{
+    width: 10%;
+  }
+
+}

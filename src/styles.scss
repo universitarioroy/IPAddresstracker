@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+  --color-VeryDarkGray: hsl(0, 0%, 17%);
+  --color-DarkGray: hsl(0, 0%, 59%);
+  --color-white:#fff;
+  --color-black:#000;
+    font-size: 62.5%;
+}
+
+body{
+   font-family: 'Rubik', sans-serif;
+   width: 100%;
+   min-height: 100vh;
+   color: var(--color-white);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main{
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows:40% 60%;
+  grid-template-columns: 100%;
+}
+
+@media only screen and (min-width:768px){
+  .main{
+    grid-template-rows:33% 66%;
+  }
+
+}
+
