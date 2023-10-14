@@ -1,34 +1,35 @@
 
     <section class="detail">
         <h1 class="detail__title">IP Address Tracker</h1>
-        <form class="detail__inputs">
-          <input type="text" placeholder="Search for any IP address or domain ...">
+        <form class="detail__inputs" name="frmInput" (ngSubmit)="onSubmit($event)">
+          <input type="text" placeholder="Search for any IP address or domain ..." name="inputIP" [(ngModel)]="inputIP">
            <button></button>
         </form>
         <div class="detail__description">
           <div class="detail__description--item">
             <h2 class="detail-description-item__title">IP Address</h2>
-            <p class="detail-description-item__texto">192.212.174.101</p>
+            <p class="detail-description-item__texto" >{{ipAddress}}</p>
           </div>
 
           <div class="detail__description--item">
             <h2 class="detail-description-item__title">Location</h2>
-            <p class="detail-description-item__texto">BrooKlin, Ny 1001</p>
+            <p class="detail-description-item__texto" [style.white-space]="'pre-line'">{{location}}</p>
           </div>
 
           <div class="detail__description--item">
             <h2 class="detail-description-item__title">Timezone</h2>
-            <p class="detail-description-item__texto">UTC - 05:00</p>
+            <p class="detail-description-item__texto">{{timeZone}}</p>
           </div>
 
           <div class="detail__description--item">
             <h2 class="detail-description-item__title">ISP</h2>
-            <p class="detail-description-item__texto">Space X Starling</p>
+            <p class="detail-description-item__texto" [style.white-space]="'pre-line'">{{isp}}</p>
           </div>
         </div>
     </section>
 
-    <section class="mapa">
+    <section class="mapa" id="map">
+
     </section>
 
 
