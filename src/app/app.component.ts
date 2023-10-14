@@ -10,7 +10,7 @@ import * as L from 'leaflet';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements AfterViewInit{
+export class AppComponent implements AfterViewInit {
 
   title="";
   inputIP:string='';
@@ -21,15 +21,21 @@ export class AppComponent implements AfterViewInit{
   timeZone:string='UTC-05:00';
   isp:string='SpaceX\nStarlink';
 
-  latLong:string[]=[];
+  lat:number=43.732388;
+  long:number=7.417945;
+
+  map:any='';
+  customIcon:any='';
+  marker:any='';
+  circle:any='';
+  polygon:any='';
+
 
   private apiService:ApiService;
 
   constructor(apiService:ApiService) {
      this.apiService=apiService;
   }
-
-
 
   async onSubmit(event:Event){
 
@@ -42,40 +48,48 @@ export class AppComponent implements AfterViewInit{
     this.location=datos_2.data.location.region;
     this.timeZone=datos_2.data.location.timezone;
     this.isp=datos_2.data.isp;
-    this.latLong=datos_1.data.loc.split(',');
-    console.log(datos_1.data.loc);
-    console.log(datos_1.data.loc.split(','));
+    this.lat=parseFloat(datos_1.data.loc.split(',')[0]);
+    this.long=parseFloat(datos_1.data.loc.split(',')[1]);
 
+    // Aqui deberia llamar al maps para renderizarlo pero pense que seria automaticos
+
+    this.map.setView([this.lat, this.long], this.map.getZoom());
+    this.marker.setLatLng(L.latLng(this.lat, this.long));
+    this.circle.setLatLng(L.latLng(this.lat, this.long));
+    this.inputIP='';
   }
 
-
-  ngAfterViewInit() {
-    const map = L.map('map').setView([-12.0432,-77.0282], 10);
+  initMaps() {
+    this.map = L.map('map').setView([this.lat,this.long], 15);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    }).addTo(this.map);
 
     // Puedes agregar marcadores, polígonos, etc. aquí
-    const marker = L.marker([-12.0432,-77.0282]).addTo(map);
-    var circle = L.circle([-12.0432,-77.0282], {
+
+    this.customIcon = L.icon({
+      iconUrl: '../assets/images/icon-location.svg',
+      iconSize: [40, 50], // Tamaño del ícono
+      iconAnchor: [20, 50], // Punto de anclaje del ícono (en este caso, el centro del ícono)
+      popupAnchor: [0, -32] // Punto de anclaje del popup (en este caso, encima del ícono)
+    });
+
+    this.marker = L.marker([this.lat,this.long],{icon:this.customIcon}).addTo(this.map);
+
+    this.circle = L.circle([this.lat,this.long], {
       color: 'red',
       fillColor: '#f03',
       fillOpacity: 0.5,
-      radius: 500
-    }).addTo(map);
-
-    var polygon = L.polygon([
-      [-12.0432,-77.0282],
-      [-12.0432,-77.0282],
-      [-12.0432,-77.0282]
-    ]).addTo(map);
-
-    marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-    circle.bindPopup("I am a circle.");
-    polygon.bindPopup("I am a polygon.");
+      radius: 50
+    }).addTo(this.map);
+    //this.marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+    //this.circle.bindPopup("I am a circle.");
+  }
 
 
+  ngAfterViewInit(){
+    this.initMaps();
   }
 }

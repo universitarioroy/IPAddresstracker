@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import {environment } from '../environments/environment';
+
 
 
 @Injectable({
@@ -7,19 +9,19 @@ import axios from 'axios';
 })
 
 export class ApiService {
-  //private apiUrl = 'https://geo.ipify.org/api/v2/country?apiKey=at_mdqQcQ4gW8HGyg7w2NDVT3FeWYjsR&ipAddress';
   private apiUrl = 'https://ipinfo.io/';
-  private key="token=b97e891aec34e1";
+  private key_1="b97e891aec34e1";
+  private key_2="at_mdqQcQ4gW8HGyg7w2NDVT3FeWYjsR";
 
-  constructor() {}
-  //38.25.18.138
+  constructor() {
+
+  }
+
   async getDatos_1(inputIP:string) {
-    console.log(`${this.apiUrl}${inputIP}?${this.key}`);
-    return axios.get(`${this.apiUrl}${inputIP}?${this.key}`);
+    return axios.get(`${this.apiUrl}${inputIP}?token=${environment.key_1}`);
   }
 
   async getDatos_2(inputIP:string) {
-    console.log(`https://geo.ipify.org/api/v2/country?apiKey=at_mdqQcQ4gW8HGyg7w2NDVT3FeWYjsR&${inputIP}`);
-    return axios.get(`https://geo.ipify.org/api/v2/country?apiKey=at_mdqQcQ4gW8HGyg7w2NDVT3FeWYjsR&ipAddress=${inputIP}`);
+    return axios.get(`https://geo.ipify.org/api/v2/country?apiKey=${environment.key_2}&ipAddress=${inputIP}`);
   }
 }
