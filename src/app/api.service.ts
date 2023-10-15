@@ -24,4 +24,8 @@ export class ApiService {
   async getDatos_2(inputIP:string) {
     return axios.get(`https://geo.ipify.org/api/v2/country?apiKey=${environment.key_2}&ipAddress=${inputIP}`);
   }
+
+  async getIublica(){
+    return axios.get('https://api.ipify.org');
+  }
 }

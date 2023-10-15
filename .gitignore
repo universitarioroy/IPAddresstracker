@@ -45,6 +45,11 @@ Thumbs.db
 
 /src/environments/
 
+/.firebase/
+/.firebaserc
+/firebase.json
+/public/
+
 
 
 

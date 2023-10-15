@@ -27,6 +27,7 @@ body{
   display: grid;
   grid-template-rows:40% 60%;
   grid-template-columns: 100%;
+  position: relative;
 }
 
 @media only screen and (min-width:768px){
